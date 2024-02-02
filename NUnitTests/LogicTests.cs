@@ -1,4 +1,5 @@
 ﻿using Logic;
+using NUnit.Framework;
 
 namespace NUnitTests
 
