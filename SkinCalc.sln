@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkinCalc", "SkinCalc\SkinCa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{85D37CCA-BE23-4C86-9A50-3D511C5C52EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{742382CD-D31A-40A9-A3BD-D5105925D7AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{742382CD-D31A-40A9-A3BD-D5105925D7AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper", "WebScraper\WebScraper.csproj", "{9FC67EB5-522B-4D00-947C-001B40DC728A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper", "WebScraper\WebScraper.csproj", "{9FC67EB5-522B-4D00-947C-001B40DC728A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

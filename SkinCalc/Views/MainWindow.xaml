@@ -4,9 +4,55 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkinCalc"
+        xmlns:vm="clr-namespace:SkinCalc.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="SkinCalc" Height="450" Width="800"
+        xmlns:cv="clr-namespace:SkinCalc.ViewLogic">
+    <Window.Resources>
+        <cv:StringToDoubleConverter x:Key="StringToDoubleConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" VerticalAlignment="Center"  MaxWidth="200" ItemsSource="{Binding SkinsInfo}" SelectedItem="{Binding SelectedItem}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Margin="5"/>
+                            <TextBlock Text=" - " Margin="5"/>
+                            <TextBlock Text="{Binding CaseCost}" Margin="5"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="{Binding KeyCost}"/>
+                <TextBox Grid.Row="1" MinWidth="150" Text="{Binding AvailableMoneyString, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <Label Content="Cases:"></Label>
+            <TextBlock Text="{Binding CalcResponse.NumberOfCases}"></TextBlock>
 
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label Content="Money For Next Case:"></Label>
+            <TextBlock Text="{Binding CalcResponse.MoneyForNextCase}"></TextBlock>
+        </StackPanel>
     </Grid>
 </Window>
