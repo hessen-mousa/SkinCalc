@@ -1,17 +1,27 @@
 ﻿using NUnit.Framework;
 using RichardSzalay.MockHttp;
+using System.IO;
 using System.Net;
+using System.Reflection;
 using WebScraper;
-
+using WebScraper.Extentions;
 namespace NUnitTests
 
 {
     public class WebScraperTests
     {
+        // private string cssourcecode = null;
+
         [SetUp]
         public void Setup()
         {
-
+            // Testfall for Extrackskin
+            //Assembly a = typeof(WebScraperTests).Assembly;
+            //using Stream y = a.GetManifestResourceStream("NUnitTests.TestFiles.CSSourcecode.htm");
+            //using StreamReader s = new(y);
+            //cssourcecode = s.ReadToEnd();
+            //var b = WebScraperClass.ExtractSkinCases(cssourcecode);
+            //b[0].DownloadImage();
         }
 
         [Test]
