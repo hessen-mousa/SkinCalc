@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:SkinCalc"
         xmlns:vm="clr-namespace:SkinCalc.ViewModels"
         mc:Ignorable="d"
-        Title="SkinCalc" Height="450" Width="800"
-        xmlns:cv="clr-namespace:SkinCalc.ViewLogic">
+        Title="SkinCalc" Height="400" Width="550"
+        xmlns:cv="clr-namespace:SkinCalc.ViewLogic" Icon="/Views/icons8-counter-strike-global-offensive-64.png">
     <Window.Resources>
         <cv:StringToDoubleConverter x:Key="StringToDoubleConverter"/>
     </Window.Resources>
@@ -25,34 +25,73 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0" VerticalAlignment="Center"  MaxWidth="200" ItemsSource="{Binding SkinsInfo}" SelectedItem="{Binding SelectedItem}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" Margin="5"/>
-                            <TextBlock Text=" - " Margin="5"/>
-                            <TextBlock Text="{Binding CaseCost}" Margin="5"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Please select a Skin Case:" FontSize="15" FontStyle="Italic"/>
+                    <ComboBox Grid.Row="1" VerticalAlignment="Center"  MaxWidth="350" ItemsSource="{Binding SkinCaseInfos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,0,0" MaxDropDownHeight="180">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" Margin="5"/>
+                                    <TextBlock Text=" - " Margin="5"/>
+                                    <TextBlock Text="{Binding Price}" Margin="5"/>
+                                    <TextBlock Text=" - " Margin="5"/>
+                                    <Image Source="{Binding Image}" Width="10" Height="10" Margin="5"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding SelectedItem.Name , StringFormat={}  Name: {0}}"/>
+                        <TextBlock  Grid.Column="1" Text="{Binding SelectedItem.Price, StringFormat={}  Price: {0}€}"/>
+
+                    </Grid>
+                    <Image Grid.Row="1" Width="90" Height="300" Source="{Binding SelectedItem.Image, Converter={cv:ByteArrayToImageSourceConverter}}" />
+                </Grid>
+            </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="{Binding KeyCost}"/>
-                <TextBox Grid.Row="1" MinWidth="150" Text="{Binding AvailableMoneyString, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Please Enter your Budget:"  FontSize="15" FontStyle="Italic"/>
+                    <TextBox MinWidth="150" Text="{Binding AvailableMoneyString, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,32,0,0"/>
+                </Grid>
+                <TextBlock Grid.Row="1" Text="{Binding KeyCost, StringFormat={} Key Cost: {0} €}"/>
             </Grid>
         </Grid>
         <StackPanel Grid.Row="1">
-            <Label Content="Cases:"></Label>
-            <TextBlock Text="{Binding CalcResponse.NumberOfCases}"></TextBlock>
+            <Label Content="Number of Cases (that you can open):"></Label>
+            <TextBlock Text="{Binding CalcResponse.NumberOfCases, StringFormat= {}  {0}}"></TextBlock>
 
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <Label Content="Money For Next Case:"></Label>
-            <TextBlock Text="{Binding CalcResponse.MoneyForNextCase}"></TextBlock>
+            <Label Content="Needed Money For Next Case:"></Label>
+            <TextBlock Text="{Binding CalcResponse.MoneyForNextCase, StringFormat= {}  {0:0.00} €}"></TextBlock>
         </StackPanel>
     </Grid>
 </Window>

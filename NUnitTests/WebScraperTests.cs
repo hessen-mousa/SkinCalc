@@ -1,10 +1,7 @@
 ﻿using NUnit.Framework;
 using RichardSzalay.MockHttp;
-using System.IO;
 using System.Net;
-using System.Reflection;
 using WebScraper;
-using WebScraper.Extentions;
 namespace NUnitTests
 
 {
